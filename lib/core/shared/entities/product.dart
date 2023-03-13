@@ -15,11 +15,13 @@ class Product extends Equatable {
   final double? price;
   final String? image;
   final CategoryModel? category;
+  final String? categoryF;
 
   final String? createdAt;
   final bool? isDeleted;
 
   const Product({
+    this.categoryF,
     this.id,
     this.name,
     this.rating,
@@ -40,6 +42,7 @@ class Product extends Equatable {
       category,
       rating,
       description,
+      categoryF,
       price,
       image,
       isDeleted,

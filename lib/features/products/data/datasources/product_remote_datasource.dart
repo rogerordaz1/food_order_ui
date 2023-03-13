@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../../core/constantes/constantes.dart';
 
 import '../../../../core/error/exeptions.dart';
@@ -116,5 +118,47 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   Future<List<Product>> searchProducts(String query) {
     // TODO: implement searchProducts
     throw ServerExeption();
+  }
+}
+
+class ProductRemoteDataSourceFirebaseImpl implements ProductRemoteDataSource {
+  final FirebaseFirestore _firebaseFirestore;
+
+  ProductRemoteDataSourceFirebaseImpl(this._firebaseFirestore);
+
+  @override
+  Future<Product> createProduct(ProductModel product) {
+    // TODO: implement createProduct
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getAllFiveStartRatingProducts() {
+    // TODO: implement getAllFiveStartRatingProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getAllProducts() {
+    // TODO: implement getAllProducts
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Product> getProductById(String id) {
+    // TODO: implement getProductById
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> getProductsByCategory(CategoryModel cat) {
+    // TODO: implement getProductsByCategory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Product>> searchProducts(String query) {
+    // TODO: implement searchProducts
+    throw UnimplementedError();
   }
 }

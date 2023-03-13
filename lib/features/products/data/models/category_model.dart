@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../core/shared/models/product_model.dart';
@@ -42,6 +42,13 @@ class CategoryModel extends Category {
         "name": name,
         "products": List<dynamic>.from(products.map((x) => x)),
       };
+
+  factory CategoryModel.fromSnapshot(DocumentSnapshot snap) => CategoryModel(
+        id: snap.id,
+        name: snap['name'],
+        reference: snap['reference'],
+        products: const [],
+      );
 }
 
 

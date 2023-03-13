@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_order_ui/features/products/data/models/category_model.dart';
 
 import '../../../../core/shared/entities/product.dart';
@@ -16,10 +17,12 @@ class ProductModel extends Product {
     double? price,
     String? image,
     CategoryModel? category,
+    String? categoryF,
     String? createdAt,
     bool? isDeleted,
   }) : super(
           id: id,
+          categoryF: categoryF,
           name: name,
           rating: rating,
           isRecommended: isRecommended,
@@ -37,4 +40,15 @@ class ProductModel extends Product {
   /// Connect the generated [_$PersonToJson] function to the `toJson` method.
   @override
   Map<String, dynamic> toJson() => _$ProductModelToJson(this);
+
+  factory ProductModel.fromSnapshot(DocumentSnapshot snap) => ProductModel(
+        id: snap.id,
+        name: snap['name'],
+        rating: snap['rating'],
+        isRecommended: snap['isRecommended'],
+        description: snap['description'],
+        price: snap['price'],
+        image: snap['image'],
+        categoryF: snap['category'],
+      );
 }

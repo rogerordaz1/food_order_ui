@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "704225097623",
+    "firebase_url": "https://flutter-ecommerce-app-3ee3c-default-rtdb.firebaseio.com",
+    "project_id": "flutter-ecommerce-app-3ee3c",
+    "storage_bucket": "flutter-ecommerce-app-3ee3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704225097623:android:f184b1d63ab67d3f82b6d2",
+        "android_client_info": {
+          "package_name": "com.example.food_order_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704225097623-41mptddr93rfe60gf56fgjbdbov1r025.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5cM11qQthyhqIYxI2juA1XtquP_XJZKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704225097623-41mptddr93rfe60gf56fgjbdbov1r025.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "704225097623-lbbop3jik6lroaufhogvje4pep63iliv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foodOrderUi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

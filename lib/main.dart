@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,9 +32,11 @@ import 'features/products/domain/usecases/products/get_product_by_id_usecase.dar
 import 'features/products/domain/usecases/products/remove_favorite_product_from_DB.dart';
 import 'features/products/domain/usecases/products/save_product_favorites_into_db.dart';
 import 'features/products/presentation/bloc/bloc/product_bloc/product_bloc.dart';
+import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await sl.init();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -109,6 +112,10 @@ void main() async {
       ),
     );
   });
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {

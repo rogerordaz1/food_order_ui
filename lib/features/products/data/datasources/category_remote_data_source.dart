@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_order_ui/core/constantes/constantes.dart';
 import 'package:food_order_ui/core/error/exeptions.dart';
 import 'package:food_order_ui/features/products/data/models/category_model.dart';
@@ -90,13 +91,12 @@ class CategoryRemoteDataSourceImpl extends CategoryRemoteDataSource {
   Future<Category> removeCategory(Category cat) async {
     try {
       final url = Uri.parse('$apiUrl/categories/${cat.id}');
-      final response = await client.delete(url, headers: {'Content-Type': 'application/json'});
-          
-      if (response.statusCode == 200) {
+      final response = await client
+          .delete(url, headers: {'Content-Type': 'application/json'});
 
+      if (response.statusCode == 200) {
         final Map<String, dynamic> catMap = json.decode(response.body);
         return CategoryModel.fromMap(catMap);
-
       } else {
         throw ServerExeption();
       }
@@ -106,24 +106,62 @@ class CategoryRemoteDataSourceImpl extends CategoryRemoteDataSource {
   }
 
   @override
-  Future<Category> updateCategory(Category cat) async{
+  Future<Category> updateCategory(Category cat) async {
     CategoryModel category = cat as CategoryModel;
     try {
       final url = Uri.parse('$apiUrl/categories/${cat.id}');
       final response = await client.put(url,
-        body: category.toJson(),
-       headers: {'Content-Type': 'application/json'});
-          
-      if (response.statusCode == 200) {
+          body: category.toJson(),
+          headers: {'Content-Type': 'application/json'});
 
+      if (response.statusCode == 200) {
         final Map<String, dynamic> catMap = json.decode(response.body);
         return CategoryModel.fromMap(catMap);
-
       } else {
         throw ServerExeption();
       }
     } catch (e) {
       throw ServerExeption();
     }
+  }
+}
+
+class CategoryRemoteDataSourceFirebaseImpl implements CategoryRemoteDataSource {
+  final FirebaseFirestore _firebaseFirestore;
+
+  CategoryRemoteDataSourceFirebaseImpl(this._firebaseFirestore);
+
+  @override
+  Future<Category> createCategory(CategoryModel cat) {
+    // TODO: implement createCategory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Category>> getCategories() {
+    return _firebaseFirestore
+        .collection('categories')
+        .snapshots()
+        .map((snapshot) {
+      return snapshot.docs.map((doc) => CategoryModel.fromSnapshot(doc)).toList();
+    });
+  }
+
+  @override
+  Future<Category> getCategoryById(String catId) {
+    // TODO: implement getCategoryById
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Category> removeCategory(CategoryModel cat) {
+    // TODO: implement removeCategory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Category> updateCategory(CategoryModel cat) {
+    // TODO: implement updateCategory
+    throw UnimplementedError();
   }
 }

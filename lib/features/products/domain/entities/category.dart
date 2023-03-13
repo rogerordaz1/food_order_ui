@@ -6,11 +6,12 @@ import '../../../../core/shared/entities/product.dart';
 
 @JsonSerializable()
 class Category extends Equatable {
-  const Category(
-      {required this.id,
-      required this.name,
-      required this.reference,
-      required this.products});
+  const Category({
+    required this.id,
+    required this.name,
+    required this.reference,
+    required this.products,
+  });
 
   final String id;
   final String name;
@@ -34,9 +35,5 @@ class Category extends Equatable {
   @override
   List<Object?> get props => [id, name, products, reference];
 
-  // factory Category.fromJson(Map<String, dynamic> json) =>
-  //     _$CategoryFromJson(json);
 
-  // /// Connect the generated [_$PersonToJson] function to the `toJson` method.
-  // Map<String, dynamic> toJson() => _$CategoryToJson(this);
 }
