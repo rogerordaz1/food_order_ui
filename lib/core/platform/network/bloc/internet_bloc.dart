@@ -14,15 +14,15 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
   InternetBloc({
     required this.dataConnectionChecker,
   }) : super(InternetLoading()) {
+    
+    _checkInternetConnection();
+
+    on<InternetStatusChanged>(_internetStatusChangeToState);
+  }
+
+  _checkInternetConnection() {
     listener = dataConnectionChecker.onStatusChange.listen((connectivity) {
-      if (connectivity == DataConnectionStatus.connected) {
-        print("El dispositivo tiene internet ahora");
-        emit(InternetConnected());
-      }
-      if (connectivity == DataConnectionStatus.disconnected) {
-        print("El dispositivo no tiene internet ahora");
-        emit(InternetDisconnected());
-      }
+      add(InternetStatusChanged(connectivity: connectivity));
     });
   }
 
@@ -30,5 +30,15 @@ class InternetBloc extends Bloc<InternetEvent, InternetState> {
   Future<void> close() {
     listener!.cancel();
     return super.close();
+  }
+
+  FutureOr<void> _internetStatusChangeToState(
+      InternetStatusChanged event, Emitter<InternetState> emit) {
+    if (event.connectivity == DataConnectionStatus.connected) {
+      emit(InternetConnected());
+    }
+    if (event.connectivity == DataConnectionStatus.disconnected) {
+      emit(InternetDisconnected());
+    }
   }
 }

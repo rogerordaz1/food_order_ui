@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'internet_bloc.dart';
 
 abstract class InternetEvent extends Equatable {
@@ -7,4 +8,12 @@ abstract class InternetEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class InternetStatusListendEvent extends InternetEvent {}
+class InternetStatusChanged extends InternetEvent {
+  final DataConnectionStatus connectivity;
+  const InternetStatusChanged({
+    required this.connectivity,
+  });
+
+  @override
+  List<Object> get props => [connectivity];
+}
